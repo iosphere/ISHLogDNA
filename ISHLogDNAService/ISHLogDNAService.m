@@ -75,6 +75,10 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     return dict;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@: %@", [super description], [[self dictionaryRepresentation] description]];
+}
+
 @end
 
 #pragma mark - Service
