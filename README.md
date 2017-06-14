@@ -6,6 +6,8 @@ ObjC apps.
 
 ## Sample
 
+### Objective-C
+
 ```obj-c
 [ISHLogDnaService setupWithIngestionKey:ingestionKey
                                hostName:hostName
@@ -18,6 +20,8 @@ m =[ISHLogDnaMessage messageWithLine:@"Sample app started"
                                 meta:@{@"anyKey" : @[@1, @42]}];
 [ISHLogDnaService logMessages:@[m]];
 ```
+
+### Swift
 
 ```swift
 ISHLogDnaService.setup(withIngestionKey: "", hostName: "", appName: "")
@@ -35,3 +39,7 @@ Simply include the following files in your project:
 
 For Swift: ensure to include `#import "ISHLogDnaService.h"`
 in your bridging header.
+
+`ISHLogDnaService` uses the [AdSupport framework](https://developer.apple.com/documentation/adsupport)
+to use a sensible default for the enabled flag. By default logging is only
+enabled for users that have `isAdvertisingTrackingEnabled`.
