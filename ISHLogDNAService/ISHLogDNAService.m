@@ -7,7 +7,10 @@
 //
 
 #import "ISHLogDNAService.h"
+
+#if TARGET_OS_IOS || TARGET_OS_TV
 @import AdSupport;
+#endif
 
 NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     switch (level) {
@@ -98,7 +101,10 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 
     dispatch_once(&pred, ^{
         sharedInstance = [[self alloc] init];
+        
+#if TARGET_OS_IOS || TARGET_OS_TV
         sharedInstance.enabled = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
+#endif
     });
 
     return sharedInstance;
