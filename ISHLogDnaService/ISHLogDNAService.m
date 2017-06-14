@@ -1,58 +1,60 @@
 //
-//  ISHLogDnaService.m
-//  ISHLogDna
+//  ISHLogDNAService.m
+//  ISHLogDNA
 //
 //  Created by Felix Lamouroux on 13.06.17.
 //  Copyright © 2017 iosphere. All rights reserved.
 //
 
-#import "ISHLogDnaService.h"
+#import "ISHLogDNAService.h"
 @import AdSupport;
 
-NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
+NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     switch (level) {
-        case ISHLogDnaLevelDebug:
+        case ISHLogDNALevelDebug:
             return @"DEBUG";
 
-        case ISHLogDnaLevelInfo:
+        case ISHLogDNALevelInfo:
             return @"INFO";
 
-        case ISHLogDnaLevelWarn:
+        case ISHLogDNALevelWarn:
             return @"WARN";
 
-        case ISHLogDnaLevelError:
+        case ISHLogDNALevelError:
             return @"ERROR";
 
-        case ISHLogDnaLevelFatal:
+        case ISHLogDNALevelFatal:
             return @"FATAL";
     }
 
+    NSCAssert(NO, @"Invalid log level: %@", @(level));
     return @"DEBUG";
 }
 
-@interface ISHLogDnaMessage ()
+#pragma mark - Message
+
+@interface ISHLogDNAMessage ()
 @property (nonatomic) NSString *line;
 @property (nonatomic) NSDate *timestamp;
 @property (nonatomic) NSDictionary *meta;
-@property (nonatomic) ISHLogDnaLevel level;
-- (instancetype)init NS_AVAILABLE(10.0, 2.0);
-
+@property (nonatomic) ISHLogDNALevel level;
 @end
 
-@implementation ISHLogDnaMessage : NSObject
+@implementation ISHLogDNAMessage : NSObject
 
-+ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDnaLevel)level meta:(nullable NSDictionary *)meta {
++ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary *)meta {
     NSParameterAssert(line.length);
 
-    if (!line) {
+    if (!line.length) {
         return nil;
     }
 
-    ISHLogDnaMessage *msg = [[[self class] alloc] init];
+    ISHLogDNAMessage *msg = [[self alloc] init];
     [msg setLevel:level];
     [msg setMeta:meta];
     [msg setLine:line];
     [msg setTimestamp:[NSDate date]];
+
     return msg;
 }
 
@@ -60,7 +62,7 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
     dict[@"line"] = self.line;
-    dict[@"level"] = NSStringFromLogDnaLevel(self.level);
+    dict[@"level"] = NSStringFromLogDNALevel(self.level);
 
     if (self.timestamp) {
         dict[@"timestamp"] = @([self.timestamp timeIntervalSince1970]);
@@ -75,24 +77,23 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
 
 @end
 
-@interface ISHLogDnaService ()
+#pragma mark - Service
+
+@interface ISHLogDNAService ()
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) NSString *ingestionKey;
 @property (nonatomic) NSString *hostName;
 @property (nonatomic) NSString *appName;
-@property (nonatomic, nonnull) NSURLSession *urlSession;
-- (instancetype)init NS_AVAILABLE(10.0, 2.0);
-
 @end
 
-@implementation ISHLogDnaService
+@implementation ISHLogDNAService
 
 + (instancetype)sharedInstance {
-    static ISHLogDnaService *sharedInstance = nil;
+    static ISHLogDNAService *sharedInstance = nil;
     static dispatch_once_t pred;
 
     dispatch_once(&pred, ^{
-        sharedInstance = [[[self class] alloc] init];
+        sharedInstance = [[self alloc] init];
         sharedInstance.enabled = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
     });
 
@@ -106,11 +107,11 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     NSParameterAssert(host.length);
     NSParameterAssert(appName.length);
 
-    ISHLogDnaService *sharedInstance = [self sharedInstance];
+    ISHLogDNAService *sharedInstance = [self sharedInstance];
     [sharedInstance setIngestionKey:key];
     [sharedInstance setHostName:host];
     [sharedInstance setAppName:appName];
-    [sharedInstance setUrlSession:[NSURLSession sharedSession]];
+
     return sharedInstance;
 }
 
@@ -128,33 +129,29 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     return [NSURL URLWithString:url];
 }
 
-+ (void)logMessages:(NSArray<ISHLogDnaMessage *> *)messages {
++ (void)logMessages:(NSArray<ISHLogDNAMessage *> *)messages {
     NSParameterAssert([[self sharedInstance] ingestionKey]);
     [[self sharedInstance] logMessages:messages];
 }
 
-- (void)logMessages:(NSArray<ISHLogDnaMessage *> *)messages {
+- (void)logMessages:(NSArray<ISHLogDNAMessage *> *)messages {
     NSParameterAssert(messages);
 
-    if (!messages.count) {
+    if (!self.enabled || !messages.count) {
         return;
     }
 
-    if (!self.enabled) {
-        return;
+    NSMutableArray<NSDictionary *> *messagesAsDictionaries = [NSMutableArray arrayWithCapacity:messages.count];
+
+    for (ISHLogDNAMessage *message in messages) {
+        NSMutableDictionary *dictMessage = [message dictionaryRepresentation];
+        dictMessage[@"app"] = self.appName;
+        [messagesAsDictionaries addObject:dictMessage];
     }
 
-    NSMutableArray *messagesAsDictionaries = [NSMutableArray arrayWithCapacity:messages.count];
-
-    for (ISHLogDnaMessage *message in messages) {
-        NSMutableDictionary *dictMesage = [message dictionaryRepresentation];
-        dictMesage[@"app"] = self.appName;
-        [messagesAsDictionaries addObject:dictMesage];
-    }
-
-    NSDictionary *boxedMessages = @{@"lines" : messagesAsDictionaries};
+    NSDictionary<NSString *, NSArray<NSDictionary *> *> *boxedMessages = @{@"lines" : messagesAsDictionaries};
     NSError *encodingError;
-    NSData *encodedMessages = [NSJSONSerialization dataWithJSONObject:boxedMessages options:0 error:&encodingError];
+    NSData *encodedMessages = [NSJSONSerialization dataWithJSONObject:boxedMessages options:kNilOptions error:&encodingError];
 
     if (encodingError) {
         NSLog(@"Could not encode log message: %@, error: %@", boxedMessages, encodingError);
@@ -162,6 +159,12 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     }
 
     NSURL *url = [self baseUrl];
+    NSParameterAssert(url);
+
+    if (!url) {
+        NSLog(@"Failed to create base URL. Invalid host? %@", self.hostName);
+        return;
+    }
 
     // configure request header
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -176,7 +179,7 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:encodedMessages];
 
-    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
             if (![response isKindOfClass:[NSHTTPURLResponse class]]) {
                 return;
             }

@@ -13,14 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Set your ingestion key, host and app name
         // best to use hyphens instead of dots in app and hostname
-        ISHLogDnaService.setup(withIngestionKey: "...", hostName: "sample-app", appName: "swift")
+        ISHLogDNAService.setup(withIngestionKey: "...", hostName: "sample-app", appName: "swift")
 
-        let message = ISHLogDnaMessage(line: "Sample app started", level: .error, meta: [ "myField" : 42 ])
-        ISHLogDnaService.logMessages([message]);
+        let message = ISHLogDNAMessage(line: "Sample app started", level: .error, meta: [ "myField" : 42 ])
+        ISHLogDNAService.logMessages([message]);
         return true
     }
 

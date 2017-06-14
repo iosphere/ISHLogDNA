@@ -9,37 +9,37 @@ ObjC apps.
 ### Objective-C
 
 ```obj-c
-[ISHLogDnaService setupWithIngestionKey:ingestionKey
+[ISHLogDNAService setupWithIngestionKey:ingestionKey
                                hostName:hostName
                                 appName:appName];
 
 // Send message including custom meta data (the dictionary must be encodable into JSON)
-ISHLogDnaMessage *m;
-m =[ISHLogDnaMessage messageWithLine:@"Sample app started"
-                               level:ISHLogDnaLevelInfo
-                                meta:@{@"anyKey" : @[@1, @42]}];
-[ISHLogDnaService logMessages:@[m]];
+ISHLogDNAMessage *m;
+m = [ISHLogDNAMessage messageWithLine:@"Sample app started"
+                                level:ISHLogDNALevelInfo
+                                 meta:@{@"anyKey" : @[@1, @42]}];
+[ISHLogDNAService logMessages:@[m]];
 ```
 
 ### Swift
 
 ```swift
-ISHLogDnaService.setup(withIngestionKey: "", hostName: "", appName: "")
+ISHLogDNAService.setup(withIngestionKey: "", hostName: "", appName: "")
 
-let message = ISHLogDnaMessage(line: "Sample app started", level: .info, meta: [ "myField" : 42 ])
-ISHLogDnaService.logMessages([message]);
+let message = ISHLogDNAMessage(line: "Sample app started", level: .info, meta: [ "myField" : 42 ])
+ISHLogDNAService.logMessages([message]);
 ```
 
 ## Usage
 
 Simply include the following files in your project:
 
-* `ISHLogDnaService.h`
-* `ISHLogDnaService.m`
+* `ISHLogDNAService.h`
+* `ISHLogDNAService.m`
 
 For Swift: ensure to include `#import "ISHLogDnaService.h"`
 in your bridging header.
 
-`ISHLogDnaService` uses the [AdSupport framework](https://developer.apple.com/documentation/adsupport)
+`ISHLogDNAService` uses the [AdSupport framework](https://developer.apple.com/documentation/adsupport)
 to use a sensible default for the enabled flag. By default logging is only
-enabled for users that have `isAdvertisingTrackingEnabled`.
+enabled for users with `isAdvertisingTrackingEnabled`.

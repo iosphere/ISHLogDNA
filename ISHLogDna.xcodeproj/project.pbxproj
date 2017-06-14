@@ -12,9 +12,9 @@
 		DC0C281D1EF0764500B27023 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0C281B1EF0764500B27023 /* Main.storyboard */; };
 		DC0C281F1EF0764500B27023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0C281E1EF0764500B27023 /* Assets.xcassets */; };
 		DC0C28221EF0764500B27023 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0C28201EF0764500B27023 /* LaunchScreen.storyboard */; };
-		DC0C28391EF0775F00B27023 /* ISHLogDnaService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28381EF0775F00B27023 /* ISHLogDnaService.m */; };
+		DC0C28391EF0775F00B27023 /* ISHLogDNAService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */; };
 		DC0C28421EF0815400B27023 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28161EF0764500B27023 /* AppDelegate.m */; };
-		DC897B821EF138EB001D86E9 /* ISHLogDnaService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28381EF0775F00B27023 /* ISHLogDnaService.m */; };
+		DC897B821EF138EB001D86E9 /* ISHLogDNAService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */; };
 		DCAE75761EF138C3005DCD92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAE75751EF138C3005DCD92 /* AppDelegate.swift */; };
 		DCAE75781EF138C3005DCD92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAE75771EF138C3005DCD92 /* ViewController.swift */; };
 		DCAE757B1EF138C3005DCD92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAE75791EF138C3005DCD92 /* Main.storyboard */; };
@@ -23,7 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DC0C280F1EF0764500B27023 /* ISHLogDna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISHLogDna.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BF793101EF141BB00E6B6BB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC0C280F1EF0764500B27023 /* ISHLogDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISHLogDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0C28131EF0764500B27023 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC0C28151EF0764500B27023 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC0C28161EF0764500B27023 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,8 +34,8 @@
 		DC0C281E1EF0764500B27023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0C28211EF0764500B27023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0C28231EF0764500B27023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC0C28371EF0775F00B27023 /* ISHLogDnaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISHLogDnaService.h; path = ISHLogDnaService/ISHLogDnaService.h; sourceTree = "<group>"; };
-		DC0C28381EF0775F00B27023 /* ISHLogDnaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISHLogDnaService.m; path = ISHLogDnaService/ISHLogDnaService.m; sourceTree = "<group>"; };
+		DC0C28371EF0775F00B27023 /* ISHLogDNAService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISHLogDNAService.h; path = ISHLogDnaService/ISHLogDNAService.h; sourceTree = "<group>"; };
+		DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISHLogDNAService.m; path = ISHLogDnaService/ISHLogDNAService.m; sourceTree = "<group>"; };
 		DC897B831EF13912001D86E9 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		DCAE75731EF138C3005DCD92 /* SampleAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAE75751EF138C3005DCD92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,8 +67,9 @@
 		DC0C28061EF0764500B27023 = {
 			isa = PBXGroup;
 			children = (
-				DC0C28371EF0775F00B27023 /* ISHLogDnaService.h */,
-				DC0C28381EF0775F00B27023 /* ISHLogDnaService.m */,
+				1BF793101EF141BB00E6B6BB /* README.md */,
+				DC0C28371EF0775F00B27023 /* ISHLogDNAService.h */,
+				DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */,
 				DC0C28111EF0764500B27023 /* SampleApp */,
 				DCAE75741EF138C3005DCD92 /* SampleAppSwift */,
 				DC0C28101EF0764500B27023 /* Products */,
@@ -77,7 +79,7 @@
 		DC0C28101EF0764500B27023 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC0C280F1EF0764500B27023 /* ISHLogDna.app */,
+				DC0C280F1EF0764500B27023 /* ISHLogDNA.app */,
 				DCAE75731EF138C3005DCD92 /* SampleAppSwift.app */,
 			);
 			name = Products;
@@ -125,9 +127,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC0C280E1EF0764500B27023 /* ISHLogDna */ = {
+		DC0C280E1EF0764500B27023 /* ISHLogDNA */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC0C28311EF0764500B27023 /* Build configuration list for PBXNativeTarget "ISHLogDna" */;
+			buildConfigurationList = DC0C28311EF0764500B27023 /* Build configuration list for PBXNativeTarget "ISHLogDNA" */;
 			buildPhases = (
 				DC0C280B1EF0764500B27023 /* Sources */,
 				DC0C280C1EF0764500B27023 /* Frameworks */,
@@ -137,9 +139,9 @@
 			);
 			dependencies = (
 			);
-			name = ISHLogDna;
+			name = ISHLogDNA;
 			productName = ISHLogDna;
-			productReference = DC0C280F1EF0764500B27023 /* ISHLogDna.app */;
+			productReference = DC0C280F1EF0764500B27023 /* ISHLogDNA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DCAE75721EF138C3005DCD92 /* SampleAppSwift */ = {
@@ -192,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DC0C280E1EF0764500B27023 /* ISHLogDna */,
+				DC0C280E1EF0764500B27023 /* ISHLogDNA */,
 				DCAE75721EF138C3005DCD92 /* SampleAppSwift */,
 			);
 		};
@@ -229,7 +231,7 @@
 				DC0C28421EF0815400B27023 /* AppDelegate.m in Sources */,
 				DC0C281A1EF0764500B27023 /* ViewController.m in Sources */,
 				DC0C28141EF0764500B27023 /* main.m in Sources */,
-				DC0C28391EF0775F00B27023 /* ISHLogDnaService.m in Sources */,
+				DC0C28391EF0775F00B27023 /* ISHLogDNAService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCAE75781EF138C3005DCD92 /* ViewController.swift in Sources */,
-				DC897B821EF138EB001D86E9 /* ISHLogDnaService.m in Sources */,
+				DC897B821EF138EB001D86E9 /* ISHLogDNAService.m in Sources */,
 				DCAE75761EF138C3005DCD92 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC0C28311EF0764500B27023 /* Build configuration list for PBXNativeTarget "ISHLogDna" */ = {
+		DC0C28311EF0764500B27023 /* Build configuration list for PBXNativeTarget "ISHLogDNA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC0C28321EF0764500B27023 /* Debug */,

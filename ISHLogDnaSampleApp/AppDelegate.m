@@ -1,13 +1,13 @@
 //
 //  AppDelegate.m
-//  ISHLogDna
+//  ISHLogDNA
 //
 //  Created by Felix Lamouroux on 13.06.17.
 //  Copyright © 2017 iosphere. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ISHLogDnaService.h"
+#import "ISHLogDNAService.h"
 
 @implementation AppDelegate
 
@@ -19,13 +19,13 @@
     NSString *appName = @"obj-c";
     /********* SETUP YOUR API KEY, HOST AND APPNAME *********/
 
-    [ISHLogDnaService setupWithIngestionKey:ingestionKey
+    [ISHLogDNAService setupWithIngestionKey:ingestionKey
                                    hostName:hostName
                                     appName:appName];
 
     // Send message including custom meta data (the dictionary must be encodable into JSON)
-    ISHLogDnaMessage *message = [ISHLogDnaMessage messageWithLine:@"Sample app started" level:ISHLogDnaLevelInfo meta:@{@"anyKey" : @[@1, @42]}];
-    [ISHLogDnaService logMessages:@[message]];
+    ISHLogDNAMessage *message = [ISHLogDNAMessage messageWithLine:@"Sample app started" level:ISHLogDNALevelInfo meta:@{@"anyKey" : @[@1, @42]}];
+    [ISHLogDNAService logMessages:@[message]];
     return YES;
 }
 
