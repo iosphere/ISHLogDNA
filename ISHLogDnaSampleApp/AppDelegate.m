@@ -13,10 +13,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /********* SETUP YOUR API KEY, HOST AND APPNAME *********/
-    NSString *ingestionKey = @"";
+    NSString *ingestionKey = @"...";
     // best to use hyphens instead of dots in app and hostname
-    NSString *appName = @"";
-    NSString *hostName = @"";
+    NSString *hostName = @"sample-app";
+    NSString *appName = @"obj-c";
     /********* SETUP YOUR API KEY, HOST AND APPNAME *********/
 
     [ISHLogDnaService setupWithIngestionKey:ingestionKey

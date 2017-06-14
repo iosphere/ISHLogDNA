@@ -7,6 +7,7 @@
 //
 
 #import "ISHLogDnaService.h"
+@import AdSupport;
 
 NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     switch (level) {
@@ -75,6 +76,7 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
 @end
 
 @interface ISHLogDnaService ()
+@property (nonatomic) BOOL enabled;
 @property (nonatomic) NSString *ingestionKey;
 @property (nonatomic) NSString *hostName;
 @property (nonatomic) NSString *appName;
@@ -91,6 +93,7 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
 
     dispatch_once(&pred, ^{
         sharedInstance = [[[self class] alloc] init];
+        sharedInstance.enabled = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
     });
 
     return sharedInstance;
@@ -111,6 +114,14 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     return sharedInstance;
 }
 
++ (BOOL)enabled {
+    return [[self sharedInstance] enabled];
+}
+
++ (void)setEnabled:(BOOL)enabled {
+    [[self sharedInstance] setEnabled:enabled];
+}
+
 - (NSURL *)baseUrl {
     NSString *url = [NSString stringWithFormat:@"https://logs.logdna.com/logs/ingest?hostname=%@&now=%@", self.hostName, @([[NSDate date] timeIntervalSince1970])];
 
@@ -126,6 +137,10 @@ NSString *NSStringFromLogDnaLevel(ISHLogDnaLevel level) {
     NSParameterAssert(messages);
 
     if (!messages.count) {
+        return;
+    }
+
+    if (!self.enabled) {
         return;
     }
 
