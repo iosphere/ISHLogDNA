@@ -77,8 +77,10 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
 + (void)logMessages:(NSArray<ISHLogDNAMessage *> *)messages;
 
 /**
- * Log messages are only sent to the server if the service is enabled and will silently be ignored otherwise.
- * The default value is set to the user's advertising preferences.
+ *   Log messages are only sent to the server if the service is enabled and will silently be ignored otherwise.
+ *
+ *   The default value is set to the user's advertising preferences, if AdSupport is available. Defaults to `NO`
+ *   on other platforms.
  */
 @property (class, nonatomic) BOOL enabled;
 
