@@ -52,10 +52,6 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 + (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary *)meta {
     NSParameterAssert(line.length);
 
-    if (!line.length) {
-        return nil;
-    }
-
     ISHLogDNAMessage *msg = [[self alloc] init];
     [msg setLevel:level];
     [msg setMeta:meta];
@@ -86,6 +82,10 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
+    if (!self.line.length) {
+        return dict;
+    }
+
     dict[@"line"] = self.line;
     dict[@"level"] = NSStringFromLogDNALevel(self.level);
 
@@ -93,7 +93,7 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
         dict[@"timestamp"] = @([self.timestamp timeIntervalSince1970]);
     }
 
-    if (self.meta) {
+    if (self.meta.count) {
         dict[@"meta"] = self.meta;
     }
 
@@ -177,6 +177,12 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 
     for (ISHLogDNAMessage *message in messages) {
         NSMutableDictionary *dictMessage = [message dictionaryRepresentation];
+        NSAssert(dictMessage.count, @"Dictionary should at least include line and level: %@ -> %@", message, dictMessage);
+
+        if (!dictMessage.count) {
+            continue;
+        }
+
         dictMessage[@"app"] = self.appName;
         [messagesAsDictionaries addObject:dictMessage];
     }
