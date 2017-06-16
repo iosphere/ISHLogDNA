@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Default Meta Keys
+
+extern NSString * const ISHLogDNAServiceKeyErrorDescription;
+extern NSString * const ISHLogDNAServiceKeyErrorCode;
+extern NSString * const ISHLogDNAServiceKeyErrorDomain;
+
 #pragma mark - Log Levels
 
 typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
@@ -43,6 +49,15 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
  *         for meta.myfield.
  */
 + (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary *)meta;
+
+/**
+ *   Helper method to create meta entries from the given error.
+ *
+ *   Will set ISHLogDNAServiceKeyErrorDescription, ISHLogDNAServiceKeyErrorCode, and
+ *   ISHLogDNAServiceKeyErrorDomain, if available. Will return an empty dictionary if
+ *   the error parameter was nil.
+ */
++ (NSDictionary<NSString *, id> *)metaDictionaryWithError:(nullable NSError *)error;
 
 /**
  *   @sa messageWithLine:level:meta:
