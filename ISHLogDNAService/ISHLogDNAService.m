@@ -82,7 +82,7 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
-    if (!self.line) {
+    if (!self.line.length) {
         return dict;
     }
 
@@ -93,7 +93,7 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
         dict[@"timestamp"] = @([self.timestamp timeIntervalSince1970]);
     }
 
-    if (self.meta) {
+    if (self.meta.count) {
         dict[@"meta"] = self.meta;
     }
 
