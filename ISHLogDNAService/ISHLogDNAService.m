@@ -12,6 +12,10 @@
 @import AdSupport;
 #endif
 
+NSString * const ISHLogDNAServiceKeyErrorDescription = @"errorDescription";
+NSString * const ISHLogDNAServiceKeyErrorCode = @"errorCode";
+NSString * const ISHLogDNAServiceKeyErrorDomain = @"errorDomain";
+
 NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     switch (level) {
         case ISHLogDNALevelDebug:
@@ -59,6 +63,24 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     [msg setTimestamp:[NSDate date]];
 
     return msg;
+}
+
++ (NSDictionary<NSString *,id> *)metaDictionaryWithError:(NSError *)error {
+    if (!error) {
+        return @{};
+    }
+
+    NSMutableDictionary *errorDict = [NSMutableDictionary dictionaryWithObject:@(error.code) forKey:ISHLogDNAServiceKeyErrorCode];
+
+    if (error.domain.length) {
+        [errorDict setObject:error.domain forKey:ISHLogDNAServiceKeyErrorDomain];
+    }
+
+    if (error.description.length) {
+        [errorDict setObject:error.description forKey:ISHLogDNAServiceKeyErrorDescription];
+    }
+
+    return [errorDict copy];
 }
 
 - (NSMutableDictionary *)dictionaryRepresentation {
