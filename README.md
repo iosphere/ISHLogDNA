@@ -4,6 +4,8 @@ This micro-framework supports remote logging via [LogDNA](https://logdna.com) on
 iOS. The framework itself is written in ObjC for easy integration in Swift and
 ObjC apps.
 
+Requires a deployment target of iOS 9 and above.
+
 ## Sample
 
 ### Objective-C
