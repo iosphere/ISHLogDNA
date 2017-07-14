@@ -72,8 +72,8 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
         [errorDict setObject:error.domain forKey:ISHLogDNAServiceKeyErrorDomain];
     }
 
-    if (error.description.length) {
-        [errorDict setObject:error.description forKey:ISHLogDNAServiceKeyErrorDescription];
+    if (error.localizedFailureReason.length) {
+        [errorDict setObject:error.localizedFailureReason forKey:ISHLogDNAServiceKeyErrorDescription];
     }
 
     return [errorDict copy];
