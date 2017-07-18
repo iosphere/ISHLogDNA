@@ -12,8 +12,10 @@
 @import AdSupport;
 #endif
 
-NSString * const ISHLogDNAServiceKeyErrorDescription = @"errorDescription";
+NSString * const ISHLogDNAServiceKeyBundleShortVersion = @"version";
+NSString * const ISHLogDNAServiceKeyBundleVersion = @"build";
 NSString * const ISHLogDNAServiceKeyErrorCode = @"errorCode";
+NSString * const ISHLogDNAServiceKeyErrorDescription = @"errorDescription";
 NSString * const ISHLogDNAServiceKeyErrorDomain = @"errorDomain";
 
 NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
@@ -49,19 +51,42 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 
 @implementation ISHLogDNAMessage : NSObject
 
-+ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary *)meta {
++ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary<NSString *, id> *)meta {
     NSParameterAssert(line.length);
 
     ISHLogDNAMessage *msg = [[self alloc] init];
     [msg setLevel:level];
-    [msg setMeta:meta];
+    [msg setMeta:[self metaDictionaryWithVersionInfoFromUserMeta:meta]];
     [msg setLine:line];
     [msg setTimestamp:[NSDate date]];
 
     return msg;
 }
 
-+ (NSDictionary<NSString *,id> *)metaDictionaryWithError:(NSError *)error {
++ (nonnull NSDictionary<NSString *, id> *)metaDictionaryWithVersionInfoFromUserMeta:(nullable NSDictionary<NSString *, id> * )userMeta {
+    NSMutableDictionary<NSString *, id> *metaWithVersion = [NSMutableDictionary dictionary];
+
+    NSString *shortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+
+    if (shortVersion.length) {
+        [metaWithVersion setObject:shortVersion forKey:ISHLogDNAServiceKeyBundleShortVersion];
+    }
+
+    NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+
+    if (buildNumber.length) {
+        [metaWithVersion setObject:buildNumber forKey:ISHLogDNAServiceKeyBundleVersion];
+    }
+
+    // add userMeta after our own entries: allow overwrites
+    if (userMeta.count) {
+        [metaWithVersion addEntriesFromDictionary:userMeta];
+    }
+
+    return [metaWithVersion copy];
+}
+
++ (NSDictionary<NSString *, id> *)metaDictionaryWithError:(NSError *)error {
     if (!error) {
         return @{};
     }
