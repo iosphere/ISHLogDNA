@@ -12,8 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Default Meta Keys
 
-extern NSString * const ISHLogDNAServiceKeyErrorDescription;
+extern NSString * const ISHLogDNAServiceKeyBundleShortVersion;
+extern NSString * const ISHLogDNAServiceKeyBundleVersion;
 extern NSString * const ISHLogDNAServiceKeyErrorCode;
+extern NSString * const ISHLogDNAServiceKeyErrorDescription;
 extern NSString * const ISHLogDNAServiceKeyErrorDomain;
 
 #pragma mark - Log Levels
@@ -47,8 +49,13 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
  *         For example, if a line is passed with a meta object, such as meta.myfield of type
  *         String, any subsequent lines with meta.myfield must have a String as its value type
  *         for meta.myfield.
+ * 
+ *         This method will add the bundle's version (build number) and short version to meta
+ *         automatically, but will never overwrite the given meta information if keys overlap.
+ *         Use the ISHLogDNAServiceKeyBundleShortVersion and ISHLogDNAServiceKeyBundleVersion
+ *         constants to overwrite the version information deliberately.
  */
-+ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary *)meta;
++ (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary<NSString *, id> *)meta;
 
 /**
  *   Helper method to create meta entries from the given error.
