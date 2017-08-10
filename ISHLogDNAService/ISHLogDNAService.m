@@ -17,6 +17,7 @@ NSString * const ISHLogDNAServiceKeyBundleVersion = @"build";
 NSString * const ISHLogDNAServiceKeyErrorCode = @"errorCode";
 NSString * const ISHLogDNAServiceKeyErrorDescription = @"errorDescription";
 NSString * const ISHLogDNAServiceKeyErrorDomain = @"errorDomain";
+NSString * const ISHLogDNAServiceKeyUnderlyingError = @"underlyingError";
 
 NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     switch (level) {
@@ -99,6 +100,12 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 
     if (error.localizedFailureReason.length) {
         [errorDict setObject:error.localizedFailureReason forKey:ISHLogDNAServiceKeyErrorDescription];
+    }
+
+    NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
+
+    if (underlyingError) {
+        [errorDict setObject:[self metaDictionaryWithError:underlyingError] forKey:ISHLogDNAServiceKeyUnderlyingError];
     }
 
     return [errorDict copy];

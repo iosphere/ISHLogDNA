@@ -17,6 +17,7 @@ extern NSString * const ISHLogDNAServiceKeyBundleVersion;
 extern NSString * const ISHLogDNAServiceKeyErrorCode;
 extern NSString * const ISHLogDNAServiceKeyErrorDescription;
 extern NSString * const ISHLogDNAServiceKeyErrorDomain;
+extern NSString * const ISHLogDNAServiceKeyUnderlyingError;
 
 #pragma mark - Log Levels
 
@@ -61,8 +62,12 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
  *   Helper method to create meta entries from the given error.
  *
  *   Will set ISHLogDNAServiceKeyErrorDescription, ISHLogDNAServiceKeyErrorCode, and
- *   ISHLogDNAServiceKeyErrorDomain, if available. Will return an empty dictionary if
- *   the error parameter was nil.
+ *   ISHLogDNAServiceKeyErrorDomain, if available.
+ *
+ *   Will add the same information for the recursive underlying errors
+ *   (via ISHLogDNAServiceKeyUnderlyingError), if present.
+ *
+ *   Will return an empty dictionary if the error parameter was nil.
  */
 + (NSDictionary<NSString *, id> *)metaDictionaryWithError:(nullable NSError *)error;
 
