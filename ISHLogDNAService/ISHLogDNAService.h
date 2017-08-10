@@ -64,8 +64,8 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
  *   Will set ISHLogDNAServiceKeyErrorDescription, ISHLogDNAServiceKeyErrorCode, and
  *   ISHLogDNAServiceKeyErrorDomain, if available.
  *
- *   Will add the same information for the underlying error (via ISHLogDNAServiceKeyUnderlyingError),
- *   if present. Will not traverse underlying errors recursively.
+ *   Will add the same information for the recursive underlying errors
+ *   (via ISHLogDNAServiceKeyUnderlyingError), if present.
  *
  *   Will return an empty dictionary if the error parameter was nil.
  */
