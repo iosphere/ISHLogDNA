@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BE21AF41F44336A0055FAF2 /* ISHLogDNAMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE21AF31F44336A0055FAF2 /* ISHLogDNAMessageTests.swift */; };
+		1BE21AF91F4434DD0055FAF2 /* ISHLogDNAService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */; };
 		DC0C28141EF0764500B27023 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28131EF0764500B27023 /* main.m */; };
 		DC0C281A1EF0764500B27023 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C28191EF0764500B27023 /* ViewController.m */; };
 		DC0C281D1EF0764500B27023 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0C281B1EF0764500B27023 /* Main.storyboard */; };
@@ -22,7 +24,20 @@
 		DCAE75801EF138C3005DCD92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAE757E1EF138C3005DCD92 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1BE21AFA1F4438EC0055FAF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC0C28071EF0764500B27023 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCAE75721EF138C3005DCD92;
+			remoteInfo = SampleAppSwift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1BE21AF11F44336A0055FAF2 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE21AF31F44336A0055FAF2 /* ISHLogDNAMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISHLogDNAMessageTests.swift; sourceTree = "<group>"; };
+		1BE21AF51F44336A0055FAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BF793101EF141BB00E6B6BB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC0C280F1EF0764500B27023 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0C28131EF0764500B27023 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +62,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1BE21AEE1F44336A0055FAF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC0C280C1EF0764500B27023 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BE21AF21F44336A0055FAF2 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				1BE21AF31F44336A0055FAF2 /* ISHLogDNAMessageTests.swift */,
+				1BE21AF51F44336A0055FAF2 /* Info.plist */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		DC0C28061EF0764500B27023 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +103,7 @@
 				DC0C28381EF0775F00B27023 /* ISHLogDNAService.m */,
 				DC0C28111EF0764500B27023 /* SampleApp */,
 				DCAE75741EF138C3005DCD92 /* SampleAppSwift */,
+				1BE21AF21F44336A0055FAF2 /* UnitTests */,
 				DC0C28101EF0764500B27023 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +113,7 @@
 			children = (
 				DC0C280F1EF0764500B27023 /* SampleApp.app */,
 				DCAE75731EF138C3005DCD92 /* SampleAppSwift.app */,
+				1BE21AF11F44336A0055FAF2 /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +159,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1BE21AF01F44336A0055FAF2 /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BE21AF81F44336A0055FAF2 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				1BE21AED1F44336A0055FAF2 /* Sources */,
+				1BE21AEE1F44336A0055FAF2 /* Frameworks */,
+				1BE21AEF1F44336A0055FAF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BE21AFB1F4438EC0055FAF2 /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 1BE21AF11F44336A0055FAF2 /* UnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DC0C280E1EF0764500B27023 /* SampleApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC0C28311EF0764500B27023 /* Build configuration list for PBXNativeTarget "SampleApp" */;
@@ -166,10 +217,14 @@
 		DC0C28071EF0764500B27023 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = iosphere;
 				TargetAttributes = {
+					1BE21AF01F44336A0055FAF2 = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = DCAE75721EF138C3005DCD92;
+					};
 					DC0C280E1EF0764500B27023 = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
@@ -195,11 +250,19 @@
 			targets = (
 				DC0C280E1EF0764500B27023 /* SampleApp */,
 				DCAE75721EF138C3005DCD92 /* SampleAppSwift */,
+				1BE21AF01F44336A0055FAF2 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1BE21AEF1F44336A0055FAF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC0C280D1EF0764500B27023 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +286,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1BE21AED1F44336A0055FAF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE21AF41F44336A0055FAF2 /* ISHLogDNAMessageTests.swift in Sources */,
+				1BE21AF91F4434DD0055FAF2 /* ISHLogDNAService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC0C280B1EF0764500B27023 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +317,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1BE21AFB1F4438EC0055FAF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCAE75721EF138C3005DCD92 /* SampleAppSwift */;
+			targetProxy = 1BE21AFA1F4438EC0055FAF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DC0C281B1EF0764500B27023 /* Main.storyboard */ = {
@@ -282,6 +362,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1BE21AF61F44336A0055FAF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.logdna.UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleAppSwift.app/SampleAppSwift";
+			};
+			name = Debug;
+		};
+		1BE21AF71F44336A0055FAF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.logdna.UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleAppSwift.app/SampleAppSwift";
+			};
+			name = Release;
+		};
 		DC0C282F1EF0764500B27023 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -441,6 +561,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1BE21AF81F44336A0055FAF2 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BE21AF61F44336A0055FAF2 /* Debug */,
+				1BE21AF71F44336A0055FAF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DC0C280A1EF0764500B27023 /* Build configuration list for PBXProject "ISHLogDNA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
