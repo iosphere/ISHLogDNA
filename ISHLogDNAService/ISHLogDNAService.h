@@ -37,6 +37,29 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
 @interface ISHLogDNAMessage : NSObject
 
 /**
+ *   The line that will be logged.
+ */
+@property (nonatomic, readonly) NSString *line;
+
+/**
+ *   The timestamp of the creation of the message object.
+ */
+@property (nonatomic, readonly) NSDate *timestamp;
+
+/**
+ *   Meta data associated with the message. Contains user-defined
+ *   entries and entries added by `messageWithLine:level:meta:`.
+ *
+ *   @sa messageWithLine:level:meta:
+ */
+@property (nonatomic, readonly) NSDictionary<NSString *, id> *meta;
+
+/**
+ *   The log level used for this message.
+ */
+@property (nonatomic, readonly) ISHLogDNALevel level;
+
+/**
  *   Create messages using this constructor.
  *
  *   @param line The message line should not be empty.
