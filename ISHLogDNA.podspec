@@ -19,10 +19,8 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/iosphere/ISHLogDNA"
 
-
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.license      = { :type => "MIT", :file => "LICENSE" }
-
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.author             = { "Preston Farr" => "xavierproductions05@gmail.com" }
@@ -33,7 +31,6 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/iosphere/ISHLogDNA.git", :tag => "#{s.version}" }
-
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source_files  = "ISHLogDNAService", "Classes/**/*.{h,m}"
