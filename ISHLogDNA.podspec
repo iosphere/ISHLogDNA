@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name         = "ISHLogDNA"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "This micro-framework supports remote logging via LogDNA on iOS."
   s.description  = <<-DESC
   This micro-framework supports remote logging via LogDNA on iOS. The framework itself is written in ObjC for easy integration in Swift and ObjC apps.
