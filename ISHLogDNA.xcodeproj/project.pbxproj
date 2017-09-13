@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					1BE21AF01F44336A0055FAF2 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						TestTargetID = DCAE75721EF138C3005DCD92;
 					};
 					DC0C280E1EF0764500B27023 = {
@@ -231,6 +232,7 @@
 					};
 					DCAE75721EF138C3005DCD92 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -376,6 +378,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleAppSwift.app/SampleAppSwift";
 			};
@@ -393,6 +396,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.logdna.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleAppSwift.app/SampleAppSwift";
 			};
@@ -538,6 +542,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -551,6 +556,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = SampleAppSwift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
