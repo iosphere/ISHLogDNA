@@ -68,38 +68,47 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 }
 
 + (nonnull NSDictionary<NSString *, id> *)metaDictionaryWithVersionInfoFromUserMeta:(nullable NSDictionary<NSString *, id> * )userMeta {
-    NSMutableDictionary<NSString *, id> *metaWithVersion = [NSMutableDictionary dictionary];
+    static NSDictionary<NSString *, id> *defaultMeta;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableDictionary<NSString *, id> *versionMeta = [NSMutableDictionary dictionary];
 
-    NSString *shortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSString *shortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 
-    if (shortVersion.length) {
-        [metaWithVersion setObject:shortVersion forKey:ISHLogDNAServiceKeyBundleShortVersion];
-    }
+        if (shortVersion.length) {
+            [versionMeta setObject:shortVersion forKey:ISHLogDNAServiceKeyBundleShortVersion];
+        }
 
-    NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+        NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
 
-    if (buildNumber.length) {
-        [metaWithVersion setObject:buildNumber forKey:ISHLogDNAServiceKeyBundleVersion];
-    }
+        if (buildNumber.length) {
+            [versionMeta setObject:buildNumber forKey:ISHLogDNAServiceKeyBundleVersion];
+        }
 
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    NSString *deviceName = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+        struct utsname systemInfo;
+        uname(&systemInfo);
+        NSString *deviceName = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 
-    if (deviceName.length) {
-        [metaWithVersion setObject:deviceName forKey:ISHLogDNAServiceKeyModelName];
-    }
+        if (deviceName.length) {
+            [versionMeta setObject:deviceName forKey:ISHLogDNAServiceKeyModelName];
+        }
 
-    NSString *systemVersion = NSProcessInfo.processInfo.operatingSystemVersionString;
+        NSString *systemVersion = NSProcessInfo.processInfo.operatingSystemVersionString;
 
-    if (systemVersion.length) {
-        [metaWithVersion setObject:systemVersion forKey:ISHLogDNAServiceKeySystemVersion];
+        if (systemVersion.length) {
+            [versionMeta setObject:systemVersion forKey:ISHLogDNAServiceKeySystemVersion];
+        }
+
+        defaultMeta = [versionMeta copy];
+    });
+
+    if (!userMeta.count) {
+        return defaultMeta;
     }
 
     // add userMeta after our own entries: allow overwrites
-    if (userMeta.count) {
-        [metaWithVersion addEntriesFromDictionary:userMeta];
-    }
+    NSMutableDictionary<NSString *, id> *metaWithVersion = [defaultMeta mutableCopy];
+    [metaWithVersion addEntriesFromDictionary:userMeta];
 
     return [metaWithVersion copy];
 }
