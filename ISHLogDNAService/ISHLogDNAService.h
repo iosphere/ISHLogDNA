@@ -17,6 +17,8 @@ extern NSString * const ISHLogDNAServiceKeyBundleVersion;
 extern NSString * const ISHLogDNAServiceKeyErrorCode;
 extern NSString * const ISHLogDNAServiceKeyErrorDescription;
 extern NSString * const ISHLogDNAServiceKeyErrorDomain;
+extern NSString * const ISHLogDNAServiceKeyModelName;
+extern NSString * const ISHLogDNAServiceKeySystemVersion;
 extern NSString * const ISHLogDNAServiceKeyUnderlyingError;
 
 #pragma mark - Log Levels
@@ -74,10 +76,17 @@ typedef NS_ENUM(NSUInteger, ISHLogDNALevel) {
  *         String, any subsequent lines with meta.myfield must have a String as its value type
  *         for meta.myfield.
  * 
- *         This method will add the bundle's version (build number) and short version to meta
- *         automatically, but will never overwrite the given meta information if keys overlap.
- *         Use the ISHLogDNAServiceKeyBundleShortVersion and ISHLogDNAServiceKeyBundleVersion
- *         constants to overwrite the version information deliberately.
+ *         This method will add the bundle's version (build number), short version, operating
+ *         system version, and model identifer to meta automatically, but will never overwrite
+ *         the given meta information if keys overlap.
+ *
+ *         Use the following keys to overwrite the respective information:
+ *
+ *              * ISHLogDNAServiceKeyBundleShortVersion
+ *              * ISHLogDNAServiceKeyBundleVersion
+ *              * ISHLogDNAServiceKeyModelName
+ *              * ISHLogDNAServiceKeySystemVersion
+ *
  */
 + (instancetype)messageWithLine:(NSString *)line level:(ISHLogDNALevel)level meta:(nullable NSDictionary<NSString *, id> *)meta;
 

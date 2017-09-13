@@ -7,6 +7,7 @@
 //
 
 #import "ISHLogDNAService.h"
+#import <sys/utsname.h>
 
 #if TARGET_OS_IOS || TARGET_OS_TV
 @import AdSupport;
@@ -17,6 +18,8 @@ NSString * const ISHLogDNAServiceKeyBundleVersion = @"build";
 NSString * const ISHLogDNAServiceKeyErrorCode = @"errorCode";
 NSString * const ISHLogDNAServiceKeyErrorDescription = @"errorDescription";
 NSString * const ISHLogDNAServiceKeyErrorDomain = @"errorDomain";
+NSString * const ISHLogDNAServiceKeyModelName = @"device-model";
+NSString * const ISHLogDNAServiceKeySystemVersion = @"system-version";
 NSString * const ISHLogDNAServiceKeyUnderlyingError = @"underlyingError";
 
 NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
@@ -77,6 +80,20 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 
     if (buildNumber.length) {
         [metaWithVersion setObject:buildNumber forKey:ISHLogDNAServiceKeyBundleVersion];
+    }
+
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceName = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+
+    if (deviceName.length) {
+        [metaWithVersion setObject:deviceName forKey:ISHLogDNAServiceKeyModelName];
+    }
+
+    NSString *systemVersion = NSProcessInfo.processInfo.operatingSystemVersionString;
+
+    if (systemVersion.length) {
+        [metaWithVersion setObject:systemVersion forKey:ISHLogDNAServiceKeySystemVersion];
     }
 
     // add userMeta after our own entries: allow overwrites
