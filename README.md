@@ -39,7 +39,7 @@ Simply include the following files in your project:
 * `ISHLogDNAService.h`
 * `ISHLogDNAService.m`
 
-For Swift: ensure to include `#import "ISHLogDnaService.h"`
+For Swift: ensure to include `#import "ISHLogDNAService.h"`
 in your bridging header.
 
 `ISHLogDNAService` uses the [AdSupport framework](https://developer.apple.com/documentation/adsupport)
