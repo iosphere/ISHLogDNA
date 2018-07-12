@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ISHLogDNA
 
 class ISHLogDNAMessageTests: XCTestCase {
 
