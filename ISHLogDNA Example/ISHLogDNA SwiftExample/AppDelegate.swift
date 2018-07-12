@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ISHLogDNA
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Set your ingestion key, host and app name
         // best to use hyphens instead of dots in app and hostname
         ISHLogDNAService.setup(withIngestionKey: "...", hostName: "sample-app", appName: "swift")
