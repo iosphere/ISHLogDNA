@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ISHLogDNAService.h"
+@import ISHLogDNA;
 
 @implementation AppDelegate
 

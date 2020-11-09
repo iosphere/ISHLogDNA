@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ISHLogDNA
 
 class ISHLogDNAMessageTests: XCTestCase {
 
@@ -17,7 +18,6 @@ class ISHLogDNAMessageTests: XCTestCase {
 
         for message in [messageWithoutMeta, messageWithEmptyMeta, messageWithUserMeta] {
             XCTAssertNotNil(message.meta)
-            XCTAssertNotNil(message.meta[ISHLogDNAServiceKeyBundleShortVersion] as? String)
             XCTAssertNotNil(message.meta[ISHLogDNAServiceKeyBundleVersion] as? String)
             XCTAssertNotNil(message.meta[ISHLogDNAServiceKeySystemVersion] as? String)
             XCTAssertNotNil(message.meta[ISHLogDNAServiceKeyModelName] as? String)
