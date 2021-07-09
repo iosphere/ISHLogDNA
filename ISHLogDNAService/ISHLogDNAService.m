@@ -214,7 +214,7 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 }
 
 - (NSURL *)baseUrl {
-    NSString *url = [NSString stringWithFormat:@"https://logs.logdna.com/logs/ingest?hostname=%@&now=%@", self.hostName, @([[NSDate date] timeIntervalSince1970])];
+    NSString *url = [NSString stringWithFormat:@"https://logs.logdna.com/logs/ingest?hostname=%@&now=%@", [self.hostName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]], @([[NSDate date] timeIntervalSince1970])];
 
     return [NSURL URLWithString:url];
 }
@@ -225,9 +225,12 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
 }
 
 - (void)logMessages:(NSArray<ISHLogDNAMessage *> *)messages {
-    NSParameterAssert(messages);
-
-    if (!self.enabled || !messages.count) {
+    if (!self.enabled) {
+        return;
+    }
+    
+    if (!messages.count) {
+        NSLog(@"No messages to log");
         return;
     }
 
@@ -255,8 +258,6 @@ NSString *NSStringFromLogDNALevel(ISHLogDNALevel level) {
     }
 
     NSURL *url = [self baseUrl];
-    NSParameterAssert(url);
-
     if (!url) {
         NSLog(@"Failed to create base URL. Invalid host? %@", self.hostName);
         return;
